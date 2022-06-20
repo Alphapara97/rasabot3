@@ -14,8 +14,17 @@ intents:
 - deny
 - mood_unhappy
 - bot_challenge
+- provide_profile_details
+- give_first_name
+- give_last_name
+- give_location_prompt
+- give_willing_to_relocate
 entities:
 - shirt_size
+- first_name
+- last_name
+- location_prompt
+- relocate
 slots:
   shirt_size:
     type: text
@@ -23,6 +32,30 @@ slots:
     mappings:
     - type: from_entity
       entity: shirt_size
+  first_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: first_name
+  last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: last_name
+  location_prompt:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: location_prompt
+  relocate:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: relocate
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -41,6 +74,24 @@ responses:
   - text: What is your shirt size?
   utter_remember:
   - text: Thanks. I'll remember that.
+  greeting_new:
+  - text: Hello I'm Abi! I'm your very own virtual job coach.  I'm here to walk you through our assessment process if you'd like.
+  utter_ask_first_name:
+  - text: Can I start with your first name?
+  utter_remember_first_name:
+  - text: Alright {first_name}!.
+  utter_ask_last_name:
+  - Hello ${firstName}, how about your last name?
+  utter_remember_last_name:
+  - text: Nice to meet you ,${first_name} ${last_name}.
+  utter_ask_location_prompt:
+  - text: Could you give me your location? City and state will do.
+  utter_remember_location_prompt:
+  - text: Ok, you are from ${location_prompt}
+  utter_ask_willing_to_relocate:
+  - text: Are you willing to relocate?
+  utter_remember_willing_to_relocate:
+  - text: Thank you for the relocation information 
 actions:
 - action_say_shirt_size
 - utter_ask_shirt_size
@@ -48,3 +99,12 @@ actions:
 - utter_greet
 - utter_happy
 - utter_remember
+- greeting_new
+- utter_ask_first_name
+- utter_remember_first_name
+- utter_ask_last_name
+- utter_remember_last_name
+- utter_ask_location_prompt
+- utter_remember_location_prompt
+- utter_ask_willing_to_relocate
+- utter_remember_willing_to_relocate
